@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import styled from "../MapboxGLMap/MapboxGLMap.module.scss";
 
 const MapboxGLMap = () => {
   const mapStyle = "mapbox://styles/virtuozoo/ckacdjkn43i8u1is4hryblbxd";
-
   const [viewport, setViewport] = useState({
     latitude: 40.4211,
     longitude: -75.6903,
@@ -30,12 +30,13 @@ const MapboxGLMap = () => {
       {...viewport}
     >
       <Marker
-        latitude={45.42}
-        longitude={-75.69}
+        latitude={viewport.latitude}
+        longitude={viewport.longitude}
         offsetLeft={-20}
         offsetTop={-10}
       >
-        <div className="marker">You are here</div>
+        <div className={styled.marker}></div>
+        <div className={styled.pulse}></div>
       </Marker>
     </ReactMapGL>
   );
