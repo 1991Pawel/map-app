@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import styled from "../MapboxGLMap/MapboxGLMap.module.scss";
+import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
 
 const MapboxGLMap = () => {
   const mapStyle = "mapbox://styles/virtuozoo/ckacdjkn43i8u1is4hryblbxd";
-  const [viewport, setViewport] = useState({
-    latitude: 40.4211,
-    longitude: -75.6903,
-    width: "100vw",
-    height: "100vh",
-    zoom: 10,
-  });
+  const { viewport, setViewport } = useContext(MapboxGlMapContext);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
