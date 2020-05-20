@@ -1,0 +1,68 @@
+.wrapper {
+  border-radius: 1px solid;
+  display: block;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard {
+  img {
+    height: 60px;
+    width: 60px;
+  }
+
+  &__city {
+    font-size: 2rem;
+    display: flex;
+  }
+
+  &__country {
+    font-size: 0.7rem;
+    margin: 1rem;
+    padding: 0.3rem;
+    background: #b82f05;
+    color: #fff;
+  }
+  &__temp {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  &__degrees {
+    font-size: 1.5rem;
+    font-weight: lighter;
+  }
+  &__weather,
+  &__desctiption {
+    color: rgb(44, 44, 44);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__desctiption {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+}
+
+.extra {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__pressure,
+  &__humidity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    border: 1px solid black;
+    height: 30px;
+    width: 30px;
+    padding: 0.2rem;
+    border-radius: 5px;
+  }
+}

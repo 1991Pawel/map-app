@@ -1,0 +1,39 @@
+.wrapper {
+  overflow: hidden;
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  align-items: center;
+  box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.5), 0 7px 0 -2px rgb(255, 255, 255),
+    0 11px 5px -5px rgba(0, 0, 0, 0.5), 0 13px 0 -4px rgba(255, 255, 255, 0.7),
+    0 16px 5px -5px rgba(0, 0, 0, 0.5), 0 20px 0 -8px rgba(255, 255, 255, 0.5);
+}
+.form {
+  &__group {
+    display: flex;
+  }
+  &__input {
+    border: none;
+    border-bottom: 1px solid rgb(83, 82, 82);
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__btn {
+    background-color: #b82f05;
+    border: none;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
