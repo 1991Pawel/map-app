@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import styled from "../MapboxGLMap/MapboxGLMap.module.scss";
 import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
+import { REACT_APP_MAP_API_KEY } from "../../apiKey";
 
 const MapboxGLMap = () => {
   const mapStyle = "mapbox://styles/virtuozoo/ckacdjkn43i8u1is4hryblbxd";
@@ -21,7 +22,7 @@ const MapboxGLMap = () => {
   return (
     <ReactMapGL
       mapStyle={mapStyle}
-      mapboxApiAccessToken={process.env.REACT_APP_MAP_API_KEY}
+      mapboxApiAccessToken={REACT_APP_MAP_API_KEY}
       {...viewport}
     >
       <Marker

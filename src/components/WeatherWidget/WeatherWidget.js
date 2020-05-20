@@ -3,11 +3,13 @@ import styled from "../WeatherWidget/WeatherWidget.module.scss";
 import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
 import DashBoard from "./Dashboard";
 import searchSvg from "../../assets/search.svg";
+import { REACT_APP_WEATHER_API_KEY } from "../../apiKey";
 
 const WeatherWidget = () => {
   const [city, setCity] = useState("");
   const { viewport, setViewport } = useContext(MapboxGlMapContext);
   const [weatherData, setWeatherData] = useState("");
+  const [error, setError] = useState(false);
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -15,29 +17,25 @@ const WeatherWidget = () => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (city) {
-      const data = await getWeather(city);
-      setViewport({
-        ...viewport,
-        latitude: data.coord.lat,
-        longitude: data.coord.lon,
-      });
-      setWeatherData({
-        data,
-      });
-      setCity("");
+    const data = await getWeather(city);
+    if (data.cod !== 200) {
+      setError(true);
+    } else {
+      setWeather(data);
+      setError(false);
     }
+    setCity("");
   };
 
   const getWeather = async (city) => {
     try {
       const base = `https://api.openweathermap.org/data/2.5/weather?`;
-      const query = `q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+      const query = `q=${city}&units=metric&appid=${REACT_APP_WEATHER_API_KEY}`;
       const request = await fetch(base + query);
       const data = await request.json();
       return data;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -55,6 +53,7 @@ const WeatherWidget = () => {
   return (
     <div className={styled.wrapper}>
       <form onSubmit={submitHandler} className={styled.form}>
+        <p>{error && "Wystapił błąd"}</p>
         {weatherData && <DashBoard {...weatherData} />}
         <div className={styled.form__group}>
           <input
