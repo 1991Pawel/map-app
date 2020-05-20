@@ -13,10 +13,18 @@ const WeatherWidget = () => {
     e.preventDefault();
     setCity(e.target.value);
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (city) {
-      getWeather(city);
+      const data = await getWeather(city);
+      setViewport({
+        ...viewport,
+        latitude: data.coord.lat,
+        longitude: data.coord.lon,
+      });
+      setWeatherData({
+        data,
+      });
       setCity("");
     }
   };
@@ -27,7 +35,7 @@ const WeatherWidget = () => {
       const query = `q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const request = await fetch(base + query);
       const data = await request.json();
-      return setWeather(data);
+      return data;
     } catch (err) {
       console.log(err);
     }
