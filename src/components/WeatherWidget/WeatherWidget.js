@@ -3,7 +3,7 @@ import styled from "../WeatherWidget/WeatherWidget.module.scss";
 import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
 import DashBoard from "./Dashboard";
 import searchSvg from "../../assets/search.svg";
-import { REACT_APP_WEATHER_API_KEY } from "../../apiKey";
+import { getWeather } from "../../api/fetch";
 
 const WeatherWidget = () => {
   const [city, setCity] = useState("");
@@ -25,18 +25,6 @@ const WeatherWidget = () => {
       setError(false);
     }
     setCity("");
-  };
-
-  const getWeather = async (city) => {
-    try {
-      const base = `https://api.openweathermap.org/data/2.5/weather?`;
-      const query = `q=${city}&units=metric&appid=${REACT_APP_WEATHER_API_KEY}`;
-      const request = await fetch(base + query);
-      const data = await request.json();
-      return data;
-    } catch (err) {
-      return err;
-    }
   };
 
   const setWeather = (data) => {

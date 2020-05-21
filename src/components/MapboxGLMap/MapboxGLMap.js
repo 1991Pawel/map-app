@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import styled from "../MapboxGLMap/MapboxGLMap.module.scss";
 import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
-import { REACT_APP_MAP_API_KEY } from "../../apiKey";
+import { REACT_APP_MAP_API_KEY } from "../../api/apiKey";
 
 const MapboxGLMap = () => {
   const mapStyle = "mapbox://styles/virtuozoo/ckacdjkn43i8u1is4hryblbxd";
@@ -10,11 +10,11 @@ const MapboxGLMap = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
-      setViewport({
+      setViewport((viewport) => ({
         ...viewport,
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
-      });
+      }));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
