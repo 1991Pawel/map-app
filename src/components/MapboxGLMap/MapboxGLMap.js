@@ -28,8 +28,8 @@ const MapboxGLMap = () => {
       <Marker
         latitude={viewport.latitude}
         longitude={viewport.longitude}
-        offsetLeft={-20}
-        offsetTop={-10}
+        offsetLeft={15}
+        offsetTop={-30}
       >
         <div className={styled.marker}></div>
         <div className={styled.pulse}></div>
