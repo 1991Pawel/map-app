@@ -41,7 +41,7 @@ const WeatherWidget = () => {
   return (
     <div className={styled.wrapper}>
       <form onSubmit={submitHandler} className={styled.form}>
-        <p>{error && "Wystapił błąd"}</p>
+        {error && <p className={styled.error}>Error</p>}
         {weatherData && <DashBoard {...weatherData} />}
         <div className={styled.form__group}>
           <input
