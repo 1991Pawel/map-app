@@ -10,6 +10,12 @@ const WeatherWidget = () => {
   const { viewport, setViewport } = useContext(MapboxGlMapContext);
   const [weatherData, setWeatherData] = useState("");
   const [error, setError] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const closeHandler = () => {
+    setIsOpen((isOpen) => !isOpen);
+    console.log(styled);
+  };
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -39,25 +45,33 @@ const WeatherWidget = () => {
   };
 
   return (
-    <div className={styled.wrapper}>
-      <form onSubmit={submitHandler} className={styled.form}>
-        <p>{error && "Wystapił błąd"}</p>
-        {weatherData && <DashBoard {...weatherData} />}
-        <div className={styled.form__group}>
-          <input
-            onChange={onChangeHandler}
-            value={city}
-            className={styled.form__input}
-            type="text"
-            placeholder="Search for a city"
-          />
+    <>
+      <div onClick={closeHandler} className={styled.btn}>
+        {isOpen ? "x" : "-"}
+      </div>
+      <div className={isOpen ? styled.wrapper : styled.wrapper__active}>
+        <form
+          onSubmit={submitHandler}
+          className={isOpen ? styled.form : styled.form__active}
+        >
+          <p>{error && "Wystapił błąd"}</p>
+          {weatherData && <DashBoard {...weatherData} />}
+          <div className={styled.form__group}>
+            <input
+              onChange={onChangeHandler}
+              value={city}
+              className={styled.form__input}
+              type="text"
+              placeholder="Search for a city"
+            />
 
-          <button type="submit" className={styled.form__btn}>
-            <img src={searchSvg} alt="search icon" />
-          </button>
-        </div>
-      </form>
-    </div>
+            <button type="submit" className={styled.form__btn}>
+              <img src={searchSvg} alt="search icon" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
 import styled from "../MapboxGLMap/MapboxGLMap.module.scss";
 import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
 import { REACT_APP_MAP_API_KEY } from "../../api/apiKey";
@@ -24,7 +24,15 @@ const MapboxGLMap = () => {
       mapStyle={mapStyle}
       mapboxApiAccessToken={REACT_APP_MAP_API_KEY}
       {...viewport}
+      getCursor={(e) => "pointer"}
+      onViewportChange={({ zoom }) =>
+        setViewport({
+          ...viewport,
+          zoom,
+        })
+      }
     >
+      >
       <Marker
         latitude={viewport.latitude}
         longitude={viewport.longitude}
@@ -34,6 +42,9 @@ const MapboxGLMap = () => {
         <div className={styled.marker}></div>
         <div className={styled.pulse}></div>
       </Marker>
+      <div style={{ position: "absolute", right: 0 }}>
+        <NavigationControl showCompass={false} captureDoubleClick={false} />
+      </div>
     </ReactMapGL>
   );
 };
