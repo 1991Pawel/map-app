@@ -7,7 +7,7 @@ const MapboxGlMapContextProvider = ({ children }) => {
     latitude: 40.4211,
     longitude: -75.6903,
     width: "100vw",
-    height: "80vh",
+    height: "100vh",
     zoom: 6,
   });
 
