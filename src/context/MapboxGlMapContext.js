@@ -6,8 +6,8 @@ const MapboxGlMapContextProvider = ({ children }) => {
   const [viewport, setViewport] = useState({
     latitude: 40.4211,
     longitude: -75.6903,
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    height: "100%",
     zoom: 6,
   });
 
