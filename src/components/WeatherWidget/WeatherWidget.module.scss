@@ -1,21 +1,12 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
-*/
-
 .wrapper {
   overflow: hidden;
   position: absolute;
   bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   z-index: 9;
   -webkit-transition: 1s all;
-  -o-transition: 1s all;
   transition: 1s all;
 
   display: -webkit-box;
@@ -31,10 +22,6 @@
   align-items: center;
 
   background-color: #fff;
-  -webkit-box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.5),
-    0 7px 0 -2px rgb(255, 255, 255), 0 11px 5px -5px rgba(0, 0, 0, 0.5),
-    0 13px 0 -4px rgba(255, 255, 255, 0.7), 0 16px 5px -5px rgba(0, 0, 0, 0.5),
-    0 20px 0 -8px rgba(255, 255, 255, 0.5);
   box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.5), 0 7px 0 -2px rgb(255, 255, 255),
     0 11px 5px -5px rgba(0, 0, 0, 0.5), 0 13px 0 -4px rgba(255, 255, 255, 0.7),
     0 16px 5px -5px rgba(0, 0, 0, 0.5), 0 20px 0 -8px rgba(255, 255, 255, 0.5);
@@ -42,10 +29,8 @@
   &__active {
     @extend .wrapper;
     -webkit-transition-delay: 0.5s;
-    -o-transition-delay: 0.5s;
     transition-delay: 0.5s;
     -webkit-transform: translate(-50%, 110%);
-    -ms-transform: translate(-50%, 110%);
     transform: translate(-50%, 110%);
   }
 }
@@ -53,7 +38,6 @@
 .form {
   padding: 2rem;
   -webkit-transition: 1s all;
-  -o-transition: 1s all;
   transition: 1s all;
   z-index: -1;
 
@@ -61,7 +45,6 @@
     @extend .form;
     opacity: 0.1;
     -webkit-transform: scale(0.8) translatey(100%);
-    -ms-transform: scale(0.8) translatey(100%);
     transform: scale(0.8) translatey(100%);
   }
 
