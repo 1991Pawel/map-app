@@ -4,6 +4,7 @@ import humidityIcon from "../../assets/humidity.svg";
 import pressureIcon from "../../assets/presure.svg";
 
 const Dashboard = React.memo(({ data }) => {
+  if (!data) return;
   const { name: city } = data;
   const { temp, humidity, pressure } = data.main;
   const { country } = data.sys;
