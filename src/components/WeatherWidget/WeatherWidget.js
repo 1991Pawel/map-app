@@ -10,26 +10,32 @@ const WeatherWidget = () => {
   const { viewport, setViewport } = useContext(MapboxGlMapContext);
   const [weatherData, setWeatherData] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
   const closeHandler = () => {
     setIsOpen((isOpen) => !isOpen);
-    console.log(styled);
   };
 
   const onChangeHandler = (e) => {
     e.preventDefault();
     setCity(e.target.value);
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const data = await getWeather(city);
+
     if (data.cod !== 200) {
       setError(true);
+      console.log("wrong");
     } else {
       setWeather(data);
       setError(false);
+      console.log("good");
     }
+    setLoading(false);
     setCity("");
   };
 
@@ -54,8 +60,10 @@ const WeatherWidget = () => {
           onSubmit={submitHandler}
           className={isOpen ? styled.form : styled.form__active}
         >
-          <p>{error && "Wystapił błąd"}</p>
-          {weatherData && <DashBoard {...weatherData} />}
+          {weatherData && (
+            <DashBoard loading={loading} error={error} {...weatherData} />
+          )}
+
           <div className={styled.form__group}>
             <input
               onChange={onChangeHandler}
