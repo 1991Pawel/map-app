@@ -68,7 +68,7 @@ const WeatherWidget = () => {
         >
           <div className={styled.form__group}>
             <input
-              autoFwocus
+              autoFocus
               onChange={onChangeHandler}
               value={city}
               className={styled.form__input}
