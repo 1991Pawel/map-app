@@ -60,21 +60,21 @@ const WeatherWidget = () => {
         {isOpen ? "x" : "-"}
       </div>
       <div className={isOpen ? styled.wrapper : styled.wrapper__active}>
+        {weatherData && !error && <DashBoard {...weatherData} />}
+        {error && <FetchError {...error} />}
         <form
           onSubmit={submitHandler}
           className={isOpen ? styled.form : styled.form__active}
         >
-          {error && <FetchError {...error} />}
-          {weatherData && !error && <DashBoard {...weatherData} />}
           <div className={styled.form__group}>
             <input
+              autoFocus
               onChange={onChangeHandler}
               value={city}
               className={styled.form__input}
               type="text"
               placeholder="Search for a city"
             />
-
             <button type="submit" className={styled.form__btn}>
               <img src={searchSvg} alt="search icon" />
             </button>
