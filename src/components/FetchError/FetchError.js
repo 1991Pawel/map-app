@@ -1,5 +1,5 @@
 import React from "react";
 
-const FetchError = () => <div>Error</div>;
+const FetchError = ({ message }) => <div>{message}</div>;
 
 export default FetchError;

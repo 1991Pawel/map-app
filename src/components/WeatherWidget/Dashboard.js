@@ -3,15 +3,8 @@ import styled from "./Dashboard.module.scss";
 import humidityIcon from "../../assets/humidity.svg";
 import pressureIcon from "../../assets/presure.svg";
 import { useTransition, animated } from "react-spring";
-import Spinner from "../Spinner/Spinner";
 
 const Dashboard = React.memo(({ data, error, loading }) => {
-  if (error) {
-    return <p>wrong city name</p>;
-  } else if (loading) {
-    return <Spinner />;
-  }
-
   const { name: city } = data;
   const { temp, humidity, pressure } = data.main;
   const { country } = data.sys;

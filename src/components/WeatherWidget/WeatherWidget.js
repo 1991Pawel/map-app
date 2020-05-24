@@ -4,6 +4,8 @@ import { MapboxGlMapContext } from "../../context/MapboxGlMapContext";
 import DashBoard from "./Dashboard";
 import searchSvg from "../../assets/search.svg";
 import { getWeather } from "../../api/fetch";
+import Spinner from "../Spinner/Spinner";
+import FetchError from "../FetchError/FetchError";
 
 const WeatherWidget = () => {
   const [city, setCity] = useState("");
@@ -12,6 +14,10 @@ const WeatherWidget = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   const closeHandler = () => {
     setIsOpen((isOpen) => !isOpen);
@@ -28,12 +34,10 @@ const WeatherWidget = () => {
     const data = await getWeather(city);
 
     if (data.cod !== 200) {
-      setError(true);
-      console.log("wrong");
+      setError(data);
     } else {
       setWeather(data);
       setError(false);
-      console.log("good");
     }
     setLoading(false);
     setCity("");
@@ -60,10 +64,8 @@ const WeatherWidget = () => {
           onSubmit={submitHandler}
           className={isOpen ? styled.form : styled.form__active}
         >
-          {weatherData && (
-            <DashBoard loading={loading} error={error} {...weatherData} />
-          )}
-
+          {error && <FetchError {...error} />}
+          {weatherData && !error && <DashBoard {...weatherData} />}
           <div className={styled.form__group}>
             <input
               onChange={onChangeHandler}
