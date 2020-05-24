@@ -3,13 +3,12 @@
   position: absolute;
   bottom: 10px;
   left: 50%;
+  will-change: transform;
   transform: translateX(-50%);
   z-index: 9;
   transition: 1s all;
-
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 
   background-color: #fff;
   box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.5), 0 7px 0 -2px rgb(255, 255, 255),
@@ -24,14 +23,14 @@
 }
 
 .form {
-  padding: 2rem;
+  padding: 1rem;
   transition: 1s all;
   z-index: -1;
 
   &__active {
     @extend .form;
     opacity: 0.1;
-    transform: scale(0.8) translatey(100%);
+    transform: 2s ease-in-out translatey(100%) scale(0.8);
   }
 
   &__group {
