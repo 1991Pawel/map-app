@@ -2,12 +2,7 @@
   padding: 1rem;
   transition: 1s all;
   z-index: -1;
-
-  &__active {
-    @extend .form;
-    opacity: 0.1;
-    transform: 2s ease-in-out translatey(100%) scale(0.8);
-  }
+  background-color: #fff;
 
   &__group {
     display: flex;
