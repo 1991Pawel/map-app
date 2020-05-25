@@ -15,10 +15,6 @@
     0 11px 5px -5px rgba(0, 0, 0, 0.5), 0 13px 0 -4px rgba(255, 255, 255, 0.7),
     0 16px 5px -5px rgba(0, 0, 0, 0.5), 0 20px 0 -8px rgba(255, 255, 255, 0.5);
 
-  @media (max-width: 600px) {
-    bottom: 8vh;
-  }
-
   &__active {
     @extend .wrapper;
     transition-delay: 0.5s;

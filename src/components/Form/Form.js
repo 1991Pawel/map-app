@@ -57,6 +57,7 @@ const Form = () => {
           className={styled.form__input}
           type="text"
           placeholder="Search for a city"
+          autoComplete="off"
         />
         <button type="submit" className={styled.form__btn}>
           <img src={searchSvg} alt="search icon" />
