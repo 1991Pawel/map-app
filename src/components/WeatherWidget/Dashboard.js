@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "./Dashboard.module.scss";
 import humidityIcon from "../../assets/humidity.svg";
 import pressureIcon from "../../assets/presure.svg";
 import { useTransition, animated } from "react-spring";
+import { WeatherContext } from "../../context/WeatherContext";
+import Spinner from "../Spinner/Spinner";
 
-const Dashboard = React.memo(({ data, error, loading }) => {
+const Dashboard = React.memo(({ data }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const { loading } = useContext(WeatherContext);
   const { name: city } = data;
   const { temp, humidity, pressure } = data.main;
   const { country } = data.sys;
   const { description, icon, main: weather } = data.weather[0];
-
   const transitions = useTransition(city, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { display: "none" },
   });
 
+  const closeHandler = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
+  if (loading) {
+    return (
+      <div className={styled.dashboard__spinner}>
+        <Spinner />
+      </div>
+    );
+  }
   return transitions.map(
     ({ item, key, props }) =>
       item && (
         <animated.div key={key} style={props}>
-          <div className={styled.wrapper}>
+          <button onClick={closeHandler} className={styled.btn}>
+            {isOpen ? "-" : "+"}
+          </button>
+          <div className={isOpen ? styled.wrapper : styled.wrapper__active}>
             <div className={styled.dashboard}>
               <div className={styled.dashboard__city}>
                 {city}
