@@ -3,6 +3,7 @@ import Spinner from "../src/components/Spinner/Spinner";
 import AbsoluteWrapper from "./components/AbsoluteWrapper/AbsoluteWrapper";
 import WeatherWidget from "./components/WeatherWidget/WeatherWidget";
 import MapboxGlMapContextProvider from "./context/MapboxGlMapContext";
+import WeatherContext from "./context/WeatherContext";
 const MapboxGLMap = React.lazy(() =>
   import("./components/MapboxGLMap/MapboxGLMap")
 );
@@ -10,12 +11,14 @@ const MapboxGLMap = React.lazy(() =>
 function App() {
   return (
     <MapboxGlMapContextProvider>
-      <AbsoluteWrapper>
-        <React.Suspense fallback={<Spinner />}>
-          <MapboxGLMap />
-        </React.Suspense>
-        <WeatherWidget />
-      </AbsoluteWrapper>
+      <WeatherContext>
+        <AbsoluteWrapper>
+          <React.Suspense fallback={<Spinner />}>
+            <MapboxGLMap />
+          </React.Suspense>
+          <WeatherWidget />
+        </AbsoluteWrapper>
+      </WeatherContext>
     </MapboxGlMapContextProvider>
   );
 }

@@ -4,7 +4,7 @@ import humidityIcon from "../../assets/humidity.svg";
 import pressureIcon from "../../assets/presure.svg";
 import { useTransition, animated } from "react-spring";
 
-const Dashboard = React.memo(({ data, error, loading }) => {
+const Dashboard = React.memo(({ data }) => {
   const { name: city } = data;
   const { temp, humidity, pressure } = data.main;
   const { country } = data.sys;

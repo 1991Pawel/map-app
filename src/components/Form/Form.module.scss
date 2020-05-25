@@ -1,0 +1,48 @@
+.form {
+  padding: 1rem;
+  transition: 1s all;
+  z-index: -1;
+
+  &__active {
+    @extend .form;
+    opacity: 0.1;
+    transform: 2s ease-in-out translatey(100%) scale(0.8);
+  }
+
+  &__group {
+    display: flex;
+  }
+  &__input {
+    border: none;
+    border-bottom: 1px solid rgb(83, 82, 82);
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__btn {
+    background-color: #b82f05;
+    border: none;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #b82f05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  position: absolute;
+}
