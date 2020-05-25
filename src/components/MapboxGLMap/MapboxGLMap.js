@@ -32,7 +32,6 @@ const MapboxGLMap = () => {
         })
       }
     >
-      >
       <Marker
         latitude={viewport.latitude}
         longitude={viewport.longitude}
