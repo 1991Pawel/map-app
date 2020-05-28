@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "./Dashboard.module.scss";
 import humidityIcon from "../../assets/humidity.svg";
 import pressureIcon from "../../assets/presure.svg";
@@ -6,8 +6,7 @@ import { useTransition, animated } from "react-spring";
 import { WeatherContext } from "../../context/WeatherContext";
 import Spinner from "../Spinner/Spinner";
 
-const Dashboard = React.memo(({ data }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Dashboard = React.memo(({ data, isOpen, onClick }) => {
   const { loading } = useContext(WeatherContext);
   const { name: city } = data;
   const { temp, humidity, pressure } = data.main;
@@ -18,10 +17,6 @@ const Dashboard = React.memo(({ data }) => {
     enter: { opacity: 1 },
     leave: { display: "none" },
   });
-
-  const closeHandler = () => {
-    setIsOpen((isOpen) => !isOpen);
-  };
 
   if (loading) {
     return (
@@ -34,10 +29,13 @@ const Dashboard = React.memo(({ data }) => {
     ({ item, key, props }) =>
       item && (
         <animated.div key={key} style={props}>
-          <button onClick={closeHandler} className={styled.btn}>
-            {isOpen ? "-" : "+"}
-          </button>
           <div className={isOpen ? styled.wrapper : styled.wrapper__active}>
+            <button
+              onClick={onClick}
+              className={isOpen ? styled.btn : styled.btn__active}
+            >
+              {isOpen ? "-" : "+"}
+            </button>
             <div className={styled.dashboard}>
               <div className={styled.dashboard__city}>
                 {city}
